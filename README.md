@@ -46,9 +46,9 @@ VT = {"test", "imaging", "lab", "show", "for", "all", "average", "tests", "imagi
 
 <p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp; In a markup language, the terminal symbols represent the actual content of the document or data being marked up. The non-terminal symbols represent the structure or syntax of the markup language itself. <p>
 
- &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp; The production rules describe how non-terminal symbols can be replaced or expanded into other non-terminal or terminal symbols. These rules define the syntax and structure of the markup language.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp; The production rules describe how non-terminal symbols can be replaced or expanded into other non-terminal or terminal symbols. These rules define the syntax and structure of the markup language. <p>
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;To specify the grammar representation for the markup language we need to use meta notations:
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;To specify the grammar representation for the markup language we need to use meta notations: <p>
 
 | Symbol | Definition                        |
 | ------ | --------------------------------- |
@@ -93,9 +93,9 @@ The grammar representation for markup language project:
 
 ---
 
-  To use the queries, the user must provide the appropriate patient data, either by patient ID or date of birth. The grammar also includes derived expressions such as <patient_id> and <birthday> to simplify the query process.
+ <p align="justify"> To use the queries, the user must provide the appropriate patient data, either by patient ID or date of birth. The grammar also includes derived expressions such as <patient_id> and <birthday> to simplify the query process. <p>
 
-Overall, this grammar is designed to provide a comprehensive language for analyzing medical results and generating customized reports based on patient data.
+<p align="justify"> Overall, this grammar is designed to provide a comprehensive language for analyzing medical results and generating customized reports based on patient data. <p>
 
 ---
 
@@ -135,7 +135,7 @@ Response {
 
 ---
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;This grammar is like a set of rules for a computer program to understand medical results. It's designed to help doctors and researchers analyze medical data more easily.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;This grammar is like a set of rules for a computer program to understand medical results. It's designed to help doctors and researchers analyze medical data more easily. <p>
 
 Here's what some of the parts of the grammar mean:
 
@@ -153,11 +153,11 @@ Here's what some of the parts of the grammar mean:
 
 
 
-In this code, we first define the glucose test result for the patient, specifying the value, units, stage, and reference range. We then define the patient's data, including their name, birthday (derived from age), gender, weight, and height.
+<p align="justify"> In this code, we first define the glucose test result for the patient, specifying the value, units, stage, and reference range. We then define the patient's data, including their name, birthday (derived from age), gender, weight, and height. <p>
 
-We then use the Response section to generate different queries and responses. In the first response, we show all the test results for the patient with the specified birthday, which returns the glucose test result. In the second response, we show the average of all lab results for the patient John Smith in the last 6 months, but since no lab results were provided in the example, the output is "No lab results found." In the third response, we show all the imaging results for the patient John Smith, but since no imaging results were provided in the example, the output is "No imaging results found."
+<p align="justify"> We then use the Response section to generate different queries and responses. In the first response, we show all the test results for the patient with the specified birthday, which returns the glucose test result. In the second response, we show the average of all lab results for the patient John Smith in the last 6 months, but since no lab results were provided in the example, the output is "No lab results found." In the third response, we show all the imaging results for the patient John Smith, but since no imaging results were provided in the example, the output is "No imaging results found." <p>
 
-Finally, we provide a response that includes a message about the patient's glucose test result, using the length and prompt keywords to specify the length of the message and the message itself.
+<p align="justify"> Finally, we provide a response that includes a message about the patient's glucose test result, using the length and prompt keywords to specify the length of the message and the message itself. <p>
 
 ---
 
@@ -289,7 +289,7 @@ Response {
 }
 ```
 
-This code defines a metamodel using the grammar.tx file, loads the model from the test.med file, and then accesses the contents of the model. The print statements at the end show some of the contents of the model, but you can access any of the other attributes or sub-attributes of the model as needed. Note that the output of this code will depend on the contents of your input file.
+<p align="justify"> This code defines a metamodel using the grammar.tx file, loads the model from the test.med file, and then accesses the contents of the model. The print statements at the end show some of the contents of the model, but you can access any of the other attributes or sub-attributes of the model as needed. Note that the output of this code will depend on the contents of your input file. <p>
 
 
 Final text.py:
