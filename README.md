@@ -13,13 +13,13 @@
 
 
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;This grammar is like a set of rules that tells a computer how to understand and analyze medical results. It has different parts that describe different types of results, such as tests, imaging, and lab results.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;This grammar is like a set of rules that tells a computer how to understand and analyze medical results. It has different parts that describe different types of results, such as tests, imaging, and lab results. <p>
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Each type of result has specific information, like the name of the test, the results themselves, and any units or reference ranges that might be important. The grammar also includes a way for users to ask the computer to show specific sets of results, like all the test results for a particular patient or the average imaging results for a certain time frame.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Each type of result has specific information, like the name of the test, the results themselves, and any units or reference ranges that might be important. The grammar also includes a way for users to ask the computer to show specific sets of results, like all the test results for a particular patient or the average imaging results for a certain time frame. <p>
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;To make things easier for the user, the grammar includes some special words that represent patient data, like the patient's ID or their date of birth. This way, the user can ask the computer to show results for a particular patient without having to type out all of their information every time.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;To make things easier for the user, the grammar includes some special words that represent patient data, like the patient's ID or their date of birth. This way, the user can ask the computer to show results for a particular patient without having to type out all of their information every time. <p>
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Overall, this grammar helps the computer understand medical results and can provide customized reports based on patient data.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Overall, this grammar helps the computer understand medical results and can provide customized reports based on patient data. <p>
 
 
 ---
@@ -44,7 +44,7 @@ VT = {"test", "imaging", "lab", "show", "for", "all", "average", "tests", "imagi
 ```
 
 
- &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp; In a markup language, the terminal symbols represent the actual content of the document or data being marked up. The non-terminal symbols represent the structure or syntax of the markup language itself.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp; In a markup language, the terminal symbols represent the actual content of the document or data being marked up. The non-terminal symbols represent the structure or syntax of the markup language itself. <p>
 
  &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp; The production rules describe how non-terminal symbols can be replaced or expanded into other non-terminal or terminal symbols. These rules define the syntax and structure of the markup language.
 
