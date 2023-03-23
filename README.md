@@ -1,7 +1,7 @@
 <h1 align="center">DOMAIN SPECIFIC LANGUAGE FOR ANALISING MEDICAL RESULTS</h1>
 
 <h2 align="center">Cristian
- BRINZA, Felicia LUPASCU, Maria ZAICA, Nichifor POPESCU</h2>
+ BRINZA, Felicia LUPASCU, Maia ZAICA, Nichifor POPESCU</h2>
 
 <h2 align="center"><i> GROUP: 11_FAF-212 PBL</i></h2>
 
