@@ -187,15 +187,15 @@ A common approach for parsing context-free grammars like this one is to use a te
 
 ## Parser
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Parsing is the process of taking some text and figuring out what it means according to a set of rules. In this case, we have a grammar that describes the structure of medical test results, and we want to be able to read in some text and figure out what kinds of results are being reported, what the values are, and what the reference ranges are.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Parsing is the process of taking some text and figuring out what it means according to a set of rules. In this case, we have a grammar that describes the structure of medical test results, and we want to be able to read in some text and figure out what kinds of results are being reported, what the values are, and what the reference ranges are. <p>
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;The algorithm I described is called "recursive descent parsing." This means that we start at the top level of the grammar (the <medical_results> rule) and recursively call parsing functions for each sub-rule until we have fully parsed the input.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;The algorithm I described is called "recursive descent parsing." This means that we start at the top level of the grammar (the <medical_results> rule) and recursively call parsing functions for each sub-rule until we have fully parsed the input. <p>
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;To do this, we start by checking the first word or symbol in the input to see if it matches any of the rules we have defined. If it does, we call the corresponding parsing function. For example, if the input starts with "test," we know we need to call the parsing function for <test_result>. That parsing function will then look for the "test" keyword, followed by the name of the test, the result value, and any reference range information.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;To do this, we start by checking the first word or symbol in the input to see if it matches any of the rules we have defined. If it does, we call the corresponding parsing function. For example, if the input starts with "test," we know we need to call the parsing function for <test_result>. That parsing function will then look for the "test" keyword, followed by the name of the test, the result value, and any reference range information. <p>
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;If the input doesn't match any of our defined rules, we know there is a problem with the input and we report an error.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;If the input doesn't match any of our defined rules, we know there is a problem with the input and we report an error. <p> 
 
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;We can use this approach to parse any text that conforms to our grammar. This could be a single test result, a series of results, or even a full report that includes results from multiple patients.
+<p align="justify"> &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;We can use this approach to parse any text that conforms to our grammar. This could be a single test result, a series of results, or even a full report that includes results from multiple patients. <p>
 
 
 <hr>
