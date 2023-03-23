@@ -1,0 +1,17 @@
+Description { 
+	test glucose= 120 
+	units= 'mg/dL' 
+	stage= 'normal' 
+	range= '70-100'
+}
+Setting {
+	patient= 'John Smith', 
+	age= '1978-01-01'
+	gender= 'male',
+	weight= '175 lbs',
+	height= '5 11'
+}
+Response {
+    	show all tests for patient age 1978-01-01
+   	 // Output: glucose: 120 mg/dL (normal)
+}
