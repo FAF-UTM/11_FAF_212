@@ -204,7 +204,7 @@ A common approach for parsing context-free grammars like this one is to use a te
 
 &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;textx is a Python library that allows you to define domain-specific languages (DSLs) using a textual syntax. Once you've defined your DSL, you can use textx to parse input text that follows your DSL syntax and generate corresponding models or objects.
 
-Pythin file:
+Python file:
 
 ```python
 from textx import metamodel_from_file
