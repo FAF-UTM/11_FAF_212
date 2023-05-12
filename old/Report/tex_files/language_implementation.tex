@@ -1,0 +1,154 @@
+\chapter{Language Implementation}
+
+\section{Language Lexing and Parsing}
+\textbf{Parsing Algorithm}
+
+Parsing algorithm: 
+A common approach for parsing context-free grammars like this one is to use a technique called recursive descent parsing. Here is how it could be done for this grammar:
+\\\	1. Start with the \texttt{<medical\_results>} rule.
+\\\	2. Check if the next token matches \texttt{<test\_result>, <imaging\_result>, <lab\_result>}, or \texttt{<query>}.
+\\\	3. If it matches one of those rules, call the corresponding parsing function.
+\\\	4. If it doesn't match any of those rules, return an error.
+\\\	5. The parsing function for \texttt{<test\_result>} would look for the "test" keyword, then call the \texttt{<test\_name>, <result>, and <unit>} parsing functions in order. It would also check if there is a \texttt{<reference\_range>} and parse it if it's there.
+\\\	6. The parsing function for \texttt{<imaging\_result>} would look for the \texttt{"imaging" keyword}, then call the \texttt{<imaging\_type>, <result>}, and \texttt{<unit>} parsing functions in order. It would also check if there is an \texttt{<image\_location>} and parse it if it's there.
+\\\	7. The parsing function for \texttt{<lab\_result>} would look for the \texttt{"lab"} keyword, then call the \texttt{<lab\_name>, <result>}, and \texttt{<unit>} parsing functions in order. It would also check if there is a \texttt{<reference\_range>} and parse it if it's there.
+\\\	8. The parsing function for \texttt{<query>} would look for the "show" keyword, then call the \texttt{<query\_type>} and \texttt{<patient\_data>} parsing functions in order.
+\\\	9. The parsing function for \texttt{<query\_type>} would look for either \texttt{"all tests", "imaging", "labs", "average tests"}, or \texttt{"average imaging"}, and parse the associated data if necessary.
+\\\	10. The parsing function for \texttt{<patient\_data>} would look for either "patient" and a patient ID, or "age" and a date of birth.
+\\\	11. The parsing function for \texttt{<patient\_id>} would parse any string of alphanumeric characters.
+\\\	12. The parsing function for \texttt{<birthday>} would look for a date in the format \texttt{"YYYY-MM-DD"}.
+\\\	13. The parsing function for \texttt{<test\_name>, <imaging\_type>, <lab\_name>, <number>, <unit>, <normal\_range>, <high\_range>, and <low\_range>} would all parse their respective data according to the grammar rules.
+
+Recursive descent parsing works by recursively calling parsing functions for each rule in the grammar until the entire input is parsed. If the input is valid according to the grammar, a parse tree is constructed that represents the structure of the input. If the input is not valid, an error is returned.
+
+\textbf{Parser}
+
+Parsing is the process of taking some text and figuring out what it means according to a set of rules. In this case, we have a grammar that describes the structure of medical test results, and we want to be able to read some text and figure out what kinds of results are being reported, what the values are, and what the reference ranges are.
+
+The algorithm I described is called "recursive descent parsing." This means that we start at the top level of the grammar (the rule) and recursively call parsing functions for each sub-rule until we have fully parsed the input.
+
+To do this, we start by checking the first word or symbol in the input to see if it matches any of the rules we have defined. If it does, we call the corresponding parsing function. For example, if the input starts with "test," we know we need to call the parsing function for. That parsing function will then look for the "test" keyword, followed by the name of the test, the result value, and any reference range information.
+
+If the input doesn't match any of our defined rules, we know there is a problem with the input and we report an error.
+
+We can use this approach to parse any text that conforms to our grammar. This could be a single test result, a series of results, or even a full report that includes results from multiple patients.
+
+\textbf{textx}
+
+textx is a Python library that allows you to define domain-specific languages (DSLs) using a textual syntax. Once you've defined your DSL, you can use textx to parse input text that follows your DSL syntax and generate corresponding models or objects.
+
+\begin{lstlisting}
+// file.py
+from textx import metamodel_from_file
+
+# Define the metamodel using the grammar file
+mm = metamodel_from_file('grammar.tx')
+
+# Load the model from the input file
+model = mm.model_from_file('test.med')
+
+# Print the contents of the model
+print(model.__dict__)
+\end{lstlisting}
+
+\textbf{grammar.tx}
+\begin{lstlisting}
+MedicalResults:
+    (test_results[TestResult] | imaging_results[ImagingResult] | lab_results[LabResult] | queries[Query])*;
+
+TestResult:
+    'test' test_name=ID ':' result=FLOAT 
+    ('units' unit=ID)? (reference_range=ReferenceRange)?;
+
+ImagingResult:
+    'imaging' imaging_type=ID ':' result=FLOAT 
+    ('units' unit=ID)? (image_location=ImageLocation)?;
+
+LabResult:
+    'lab' lab_name=ID ':' result=FLOAT 
+    ('units' unit=ID)? (reference_range=ReferenceRange)?;
+
+Query:
+    'show' query_type=QueryType 'for' patient_data=PatientData;
+
+QueryType:
+    ('all' result_type=ResultType | 'average' result_type=ResultType 'for' time_frame=ID);
+
+ResultType:
+    'tests' | 'imaging' | 'labs';
+
+PatientData:
+    ('patient' patient_id=ID | 'age' birthday=Date);
+
+ReferenceRange:
+    ('normal range' normal_range=Range | 'high range' high_range=FLOAT unit=ID 
+    | 'low range' low_range=FLOAT unit=ID);
+
+Range:
+    lower=FLOAT '-' upper=FLOAT unit=ID;
+
+ImageLocation:
+    'location' location=ID;
+
+Date:
+    year=INT '-' month=INT '-' day=INT;
+
+terminal FLOAT: /[-+]?(\d*\.\d+|\d+\.?\d*)/;
+terminal INT: /[0-9]+/;
+terminal ID: /[a-zA-Z_][a-zA-Z0-9_]*/;
+\end{lstlisting}
+
+\textbf{final text.py}
+\begin{lstlisting}
+# Import the metamodel_from_file function from the textx library
+from textx import metamodel_from_file
+
+# Define the metamodel using the grammar file
+mm = metamodel_from_file('grammar.tx')
+
+# Load the model from the input file
+model = mm.model_from_file('test.med')
+
+# Access the contents of the model
+
+# Get the Description object from the model
+description = model.Description
+
+# Get the glucose, units, stage, and reference range attributes from the Description object
+glucose = description.glucose
+units = description.units
+stage = description.stage
+reference_range = description.range
+
+# Get the Setting object from the model
+setting = model.Setting
+
+# Get the patient, age, gender, weight, and height attributes from the Setting object
+patient = setting.patient
+age = setting.age
+gender = setting.gender
+weight = setting.weight
+height = setting.height
+
+# Get the Response object from the model
+response = model.Response
+
+# Get the query_type and patient_data attributes from the Response object
+query_type = response.query_type
+patient_data = response.patient_data
+
+# Print some of the contents of the model
+print(f"Patient: {patient}, Age: {age}")
+print(f"Test: glucose={glucose}, units={units}, stage={stage}, reference range={reference_range}")
+print(f"Query: query_type={query_type}, patient_data={patient_data}")
+\end{lstlisting}
+
+A brief overview of the process used by textx to parse input text using our specified grammar:
+\begin{enumerate}
+    \item Define the grammar: First, you define the grammar for your domain-specific language (DSL) using textx. The grammar specifies the syntax and structure of valid input text for your DSL, and it defines the rules for how to parse that input text into a model or object.
+    \item Define a metamodel: Once you've defined your grammar, you use textx to define a metamodel based on that grammar. The metamodel provides a Pythonic interface for working with your DSL, and it contains information about the syntax and structure of your DSL, as well as the rules for parsing input text.
+    \item Load the model: To parse input text and generate a corresponding model or object, you load the input text using the metamodel. textx takes care of the parsing process for you, using the rules defined in your grammar and metamodel to generate the model.
+    \item Access the model: Once you've loaded the model, you can access its contents using Python code. The exact structure and contents of the model will depend on your DSL and the input text that you provided.
+\end{enumerate}
+
+Overall, textx provides a flexible and powerful way to define and parse DSLs using Python code. It abstracts away much of the complexity of parsing input text and generates a corresponding model that you can work with using Python code.
