@@ -25,14 +25,13 @@
 ---
 
 ## For a markup language, we can define its grammar as follows:
+	
+> G = (V<sub>N</sub>, V<sub>T</sub>, P, S)
 
-L(G) = (S, P, VN, VT), where:
-
-- S is the start symbol
-- P is a finite set of production rules
-- VN is a finite set of non-terminal symbols
-- VT is a finite set of terminal symbols
-
+- V<sub>N</sub> is a finite set of non-terminal symbols;
+- V<sub>T</sub> is a finite set of terminal symbols;
+- S is a start symbol;
+- P is a finite set of productions of rules. 
 
 ```
 VN = {medical_results, test_result, imaging_result, lab_result, query, query_type, result_type, patient_data, patient_id, birthday, date, test_name, imaging_type, lab_name, result, unit, reference_range, normal_range, high_range, low_range, image_location, location}
