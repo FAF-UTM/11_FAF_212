@@ -43,3 +43,26 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+#  A possible method of generating .mrd files might involve creating a Python script that writes to a file in the format of the Medical Results DSL.
+#  You would input the desired values as Python variables, then write these to the file in the appropriate format. 
+
+'''
+Copy code
+def write_mrd_file(filename, data):
+    with open(filename, 'w') as f:
+        for key, value in data.items():
+            if isinstance(value, dict):
+                f.write(f'{key}:\n')
+                for sub_key, sub_value in value.items():
+                    f.write(f'    {sub_key}: {sub_value}\n')
+            else:
+                f.write(f'{key}: {value}\n')
+
+'''
