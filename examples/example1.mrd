@@ -1,0 +1,27 @@
+patient: John Doe
+dob: 1990-01-01
+test: Complete Blood Count
+date: 2023-06-10
+cbc:
+    hemoglobin: 15.5
+    hematocrit: 45
+    wbc: 6000
+    rbc: 5
+    platelets: 150000
+lipid:
+    ldl: 130
+    hdl: 60
+    triglycerides: 150
+cmp:
+    glucose: 100
+    sodium: 140
+    potassium: 4.5
+    chloride: 100
+    bicarbonate: 24
+    bun: 20
+    creatinine: 1.0
+    albumin: 4.5
+    bilirubin: 1.0
+    alp: 100
+    alt: 30
+    ast: 30
