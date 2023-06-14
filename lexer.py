@@ -116,6 +116,6 @@ class Lexer:
                 self.advance()
                 return Token(NEWLINE, '\n')
 
-            self.error()
+            self.error(f"Invalid character: {self.current_char}")
 
         return Token(EOF, None)

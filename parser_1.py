@@ -14,7 +14,7 @@ class Parser:
         if self.current_token.type == token_type:
             self.current_token = self.lexer.get_next_token()
         else:
-            self.error()
+           self.error(f"Expected {token_type}, found {self.current_token.type}")
 
     def parse(self):
         results = {}
@@ -32,8 +32,15 @@ class Parser:
                 elif self.current_token.type == STRING:
                     results[ident] = self.current_token.literal
                     self.eat(STRING)
+                else:
+                    self.error(f"Invalid value type: {self.current_token.type}")
 
                 if self.current_token.type == NEWLINE:  # Only eat a newline if one exists
                     self.eat(NEWLINE)
+                else:
+                    self.error("Expected newline after value")
+
+            else:
+                self.error(f"Invalid token: {self.current_token.type}")
 
         return results
