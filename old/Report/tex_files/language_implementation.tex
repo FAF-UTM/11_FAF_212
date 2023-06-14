@@ -60,6 +60,56 @@ To do this, we start by checking the first word or symbol in the input to see if
 If the input doesn't match any of our defined rules, we know there is a problem with the input and we report an error.
 
 We can use this approach to parse any text that conforms to our grammar. This could be a single test result, a series of results, or even a full report that includes results from multiple patients.
+\begin{lstlisting}
+    from lexer import Lexer, IDENT, STRING, NUMBER, COLON, NEWLINE, EOF
+
+class Parser:
+    def __init__(self, lexer):
+        self.lexer = lexer
+        self.current_token = self.lexer.get_next_token()
+
+    def error(self):
+        raise Exception('Invalid syntax')
+
+    def eat(self, token_type):
+        if self.current_token.type == token_type:
+            self.current_token = self.lexer.get_next_token()
+        else:
+            self.error()
+
+    def parse(self):
+        results = {}
+
+        while self.current_token.type != EOF:
+            if self.current_token.type == IDENT:
+                ident = self.current_token.literal
+                self.eat(IDENT)
+
+                self.eat(COLON)
+
+                if self.current_token.type == NUMBER:
+                    results[ident] = self.current_token.literal
+                    self.eat(NUMBER)
+                elif self.current_token.type == STRING:
+                    results[ident] = self.current_token.literal
+                    self.eat(STRING)
+
+                self.eat(NEWLINE)
+
+        return results
+\end{lstlisting}
+
+The provided code defines a lexer and a parser class for processing a specific DSL (Domain-Specific Language) syntax.
+
+The lexer tokenizes the input code into specific token types, such as \texttt{IDENT} (identifier), \texttt{STRING} (string literal), \texttt{NUMBER} (numeric literal), \texttt{COLON} (colon), \texttt{NEWLINE} (line break), and \texttt{EOF} (end of file).
+
+The parser class takes an instance of the lexer and performs syntax analysis on the tokenized input. It implements the parsing logic for the DSL syntax, which seems to follow a key-value pair format with identifiers and corresponding values.
+
+The \texttt{parse} method of the parser class iterates through the tokens and extracts the key-value pairs. It expects the input to follow the pattern: \texttt{<identifier>: <value>}, where the value can be either a number or a string. The identified key-value pairs are stored in a dictionary called \texttt{results}.
+
+If the input code conforms to the expected syntax, the \texttt{parse} method returns the \texttt{results} dictionary containing the parsed key-value pairs. Otherwise, an exception is raised for invalid syntax.
+
+
 
 \textbf{textx}
 
@@ -384,3 +434,39 @@ The code provided defines a basic Token class and a set of constants representin
 In addition to the Token class, the code defines a dictionary of keywords and a function called \texttt{<lookup\_ident>} that takes an identifier string as input and returns the corresponding token type (either IDENT or one of the keyword types).
 
 This code above is a simple implementation of a lexer (also known as a tokenizer or scanner) for a programming language. A lexer takes a stream of characters (representing the source code of a program) and breaks it up into tokens, which are the basic building blocks of the language. Each token represents a single element of the program, such as a keyword, identifier, or operator. The tokens produced by the lexer are then passed on to the parser, which uses them to construct an abstract syntax tree representing the structure of the program.
+
+\section{DSL Implementation Examples}
+
+Here's an example of how you could define a DSL implementation using the provided medical data:
+
+\begin{lstlisting}
+patient: John Doe
+dob: 1990-01-01
+test: Complete Blood Count
+date: 2023-06-10
+cbc:
+    hemoglobin: 15.5
+    hematocrit: 45
+    wbc: 6000
+    rbc: 5
+    platelets: 150000
+lipid:
+    ldl: 130
+    hdl: 60
+    triglycerides: 150
+cmp:
+    glucose: 100
+    sodium: 140
+    potassium: 4.5
+    chloride: 100
+    bicarbonate: 24
+    bun: 20
+    creatinine: 1.0
+    albumin: 4.5
+    bilirubin: 1.0
+    alp: 100
+    alt: 30
+    ast: 30
+\end{lstlisting}
+
+In this example, the DSL syntax includes the main sections of the medical data such as the patient information (\texttt{patient}, \texttt{dob}), the test information (\texttt{test, date}), and the specific test results (\texttt{cbc, lipid, cmp}). Each test section contains the respective attributes and their corresponding values.

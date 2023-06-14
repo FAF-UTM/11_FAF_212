@@ -26,6 +26,18 @@
   tabsize=3
 }
 
+\usepackage{chngcntr}
+
+\counterwithout{figure}{section}
+\counterwithout{table}{section}
+\renewcommand{\thefigure}{\arabic{figure}} % Change figure numbering style
+
+\usepackage{mwe}
+\usepackage{caption}
+\captionsetup{labelfont=bf,format=hang,labelsep=period}
+
+\usepackage{float}
+
 \begin{document}
 
     \input{tex_files/title_page}
