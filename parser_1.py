@@ -33,6 +33,7 @@ class Parser:
                     results[ident] = self.current_token.literal
                     self.eat(STRING)
 
-                self.eat(NEWLINE)
+                if self.current_token.type == NEWLINE:  # Only eat a newline if one exists
+                    self.eat(NEWLINE)
 
         return results

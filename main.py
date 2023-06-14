@@ -19,6 +19,7 @@ from interpreter import Interpreter
 from lexer import Lexer, EOF, IDENT, NUMBER, NEWLINE
 
 def main():
+
     # Open the file and read the content
     with open('examples/example1.mrd', 'r') as file:
         content = file.read()
@@ -29,17 +30,18 @@ def main():
     # Tokenize the content and print formatted output
     while True:
         token = lexer.get_next_token()
+        print(token.type, token.literal)  # Debugging line
         if token.type == EOF:
             break
 
-        # Determine the separator based on the token type
-        separator = ': ' if token.type != NEWLINE else '\n'
+    # Pass the lexer to the parser
+    parser = Parser(lexer)
 
-        # Print the token value without newline for IDENT and NUMBER tokens
-        if token.type in (IDENT, NUMBER):
-            print(token.literal, end='')
-        else:
-            print(token.literal, end=separator)
+    # Pass the parser to the interpreter
+    interpreter = Interpreter(parser)
+
+    # Interpret the content and print the results and reference ranges
+    interpreter.interpret()
 
 if __name__ == "__main__":
     main()

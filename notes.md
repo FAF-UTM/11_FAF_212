@@ -1,0 +1,3 @@
+The lexer is converting the content of the file into tokens, the parser is converting these tokens into an abstract syntax tree (AST), and the interpreter is using this AST to print out the results.
+
+The output that you want (the result and reference range for each parameter) is being printed in the interpret function of the interpreter, but it is not being appended to the final output. It looks like the main function only prints the tokens, and does not use the interpreter to generate the results and reference ranges.
